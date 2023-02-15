@@ -5,6 +5,7 @@ import com.moviesapi.db.MovieEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:57172"})
 @RequestMapping("/movies/api")
 public class MoviesApiController {
     private final MovieRepository movieRepository;
@@ -15,7 +16,12 @@ public class MoviesApiController {
 
     @GetMapping("/view")
     public @ResponseBody Iterable<MovieEntity> view() {
-        return this.movieRepository.findAll();
+        return this.movieRepository.findAllByOrderByRatingDesc();
+    }
+
+    @GetMapping("/view/{id}")
+    public @ResponseBody MovieEntity viewById(@PathVariable int id) {
+        return this.movieRepository.findById(id);
     }
 
     @PostMapping("/add")
@@ -39,8 +45,8 @@ public class MoviesApiController {
         return "Updated movie from list";
     }
 
-    @DeleteMapping("/delete")
-    public @ResponseBody String delete(@RequestParam int id) {
+    @DeleteMapping("/delete/{id}")
+    public @ResponseBody String delete(@PathVariable int id) {
         MovieEntity movie = movieRepository.findById(id);
 
         movieRepository.delete(movie);

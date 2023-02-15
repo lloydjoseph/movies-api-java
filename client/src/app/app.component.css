@@ -1,0 +1,10 @@
+.rating-bar button.active:nth-child(1) { background-color: #DD0000; color: #000 }
+.rating-bar button.active:nth-child(2) { background-color: #E84F01; color: #000 }
+.rating-bar button.active:nth-child(3) { background-color: #EE8101; color: #000 }
+.rating-bar button.active:nth-child(4) { background-color: #F5B601; color: #000 }
+.rating-bar button.active:nth-child(5) { background-color: #FCE801; color: #000 }
+.rating-bar button.active:nth-child(6) { background-color: #E2F700; color: #000 }
+.rating-bar button.active:nth-child(7) { background-color: #B1E901; color: #000 }
+.rating-bar button.active:nth-child(8) { background-color: #7EDA02; color: #000 }
+.rating-bar button.active:nth-child(9) { background-color: #4ACB02; color: #000 }
+.rating-bar button.active:nth-child(10) { background-color: #03B703; color: #000 }

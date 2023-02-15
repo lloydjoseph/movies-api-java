@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+#rating-txt:checked ~ #rating-select {
+  @apply block !important;
+}
+
+#rating-txt:checked + label {
+  @apply rounded-none;
+  @apply rounded-t-lg !important;
+}
+
+.rating-bar.rating-1 > div {
+  width: 10%;
+  background: #DD0000;
+}
+
+.rating-bar.rating-2 > div {
+  width: 20%;
+  background: #E84F01;
+}
+
+
+.rating-bar.rating-3 > div {
+  width: 30%;
+  background: #E84F01;
+}
+
+.rating-bar.rating-4 > div {
+  width: 40%;
+  background: #F5B601;
+}
+
+.rating-bar.rating-5 > div {
+  width: 50%;
+  background: #FCE801;
+}
+
+.rating-bar.rating-6 > div {
+  width: 60%;
+  background: #E2F700;
+}
+
+.rating-bar.rating-7 > div {
+  width: 70%;
+  background: #B1E901;
+}
+
+.rating-bar.rating-8 > div {
+  width: 80%;
+  background: #7EDA02;
+}
+
+.rating-bar.rating-9 > div {
+  width: 90%;
+  background: #4ACB02;
+}
+
+.rating-bar.rating-10 > div {
+  width: 100%;
+  background: #03B703;
+}
+
