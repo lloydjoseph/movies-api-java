@@ -1,8 +1,10 @@
-import {Component, NgIterable, OnInit} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import { Component, NgIterable, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { faArrowRightToBracket, faArrowDown, faPlus, faAngleDown, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import {FormBuilder, NgForm} from "@angular/forms";
-import {Movie} from "./movie";
+import { FormBuilder, NgForm } from "@angular/forms";
+import { env } from "./env-local";
+
+let headers = new HttpHeaders();
 
 @Component({
   selector: 'app-root',
@@ -12,10 +14,13 @@ import {Movie} from "./movie";
 
 
 export class AppComponent implements OnInit{
+  private headers: HttpHeaders | undefined;
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get('http://localhost:8080/movies/api/view').subscribe(movies => {this.moviesTemp = this.movies = movies});
+    this.headers = new HttpHeaders();
+    headers = headers.set('Authorization', env.apiKey)
+    this.http.get(`${env.url}/api/movies/view`, {headers: headers}).subscribe(movies => {this.moviesTemp = this.movies = movies});
   }
 
   movies: any = [];
@@ -23,7 +28,7 @@ export class AppComponent implements OnInit{
   moviesTemp: any = [];
 
   faArrowDown = faArrowDown; faPlus = faPlus; faAngleDown = faAngleDown; faEdit = faEdit; faTrash = faTrash;
-  admin = 0;
+  admin = 1;
   ratingsList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   search: any;
 
@@ -31,7 +36,7 @@ export class AppComponent implements OnInit{
     let body = new HttpParams();
     body = body.set('name', name);
     body = body.set('rating', rating);
-    this.http.post(`http://localhost:8080/movies/api/add`, body).subscribe();
+    this.http.post(`${env.url}/api/movies/add`, body, {headers: headers}).subscribe();
     location.reload();
   }
 
@@ -42,7 +47,7 @@ export class AppComponent implements OnInit{
 
   deleteRequest(id: number) {
     if(confirm("Delete movie ?")) {
-      this.http.delete(`http://localhost:8080/movies/api/delete/${id}`).subscribe();
+      this.http.delete(`${env.url}/movies/api/delete/${id}`, {headers: headers}).subscribe();
       location.reload();
     }
   }

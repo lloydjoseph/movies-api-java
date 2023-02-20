@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:57172", "http://141.136.36.71"})
-@RequestMapping("/movies/api")
+@RequestMapping("/api/movies")
 public class MoviesApiController {
     private final MovieRepository movieRepository;
 
